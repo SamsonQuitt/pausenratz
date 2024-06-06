@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserStates;
 use App\Models\ProjectInstance;
-use App\Models\UserState;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -26,10 +26,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_state_id' => UserState::factory(),
             'project_instance_id' => ProjectInstance::factory(),
             'name' => fake()->name(),
             'password' => static::$password ??= Hash::make('password'),
+            'state' => UserStates::ACTIVE,
             'remember_token' => Str::random(10),
         ];
     }

@@ -1,12 +1,9 @@
-import { useEffect, FormEventHandler } from 'react';
+import React, {useEffect, MouseEventHandler} from 'react';
 import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/LayoutGuest';
 import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+
 import { Head, Link, useForm } from '@inertiajs/react';
-import {Stack, TextField} from "@mui/material";
+import {Button, Stack, TextField} from "@mui/material";
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -21,11 +18,9 @@ export default function Login({ status, canResetPassword }: { status?: string, c
         };
     }, []);
 
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-
+    function submit(e: MouseEventHandler){
         post(route('login'));
-    };
+    }
 
     return (
         <Stack>
@@ -33,7 +28,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit}>
+            <form>
                 <div>
 
                     <TextField
@@ -87,9 +82,13 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         </Link>
                     )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button
+                        variant={'contained'}
+                        disabled={processing}
+                        onClick={submit}
+                    >
                         Log in
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </Stack>

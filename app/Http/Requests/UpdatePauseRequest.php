@@ -11,7 +11,7 @@ class UpdatePauseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdatePauseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'time_start' => 'date',
+            'time_end' => 'required|date'
         ];
     }
 }
