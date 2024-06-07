@@ -3,8 +3,15 @@ export interface User {
     name: string;
     state: number;
     pauses: Pause[];
+    roles: Role[];
     pauses_sum_duration: number;
     email_verified_at: string;
+}
+
+export interface Role {
+    id: number;
+    keyword: string;
+    title: string;
 }
 
 export interface Pause {

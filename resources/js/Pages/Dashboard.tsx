@@ -1,9 +1,10 @@
 import {Head, router, usePage} from '@inertiajs/react';
 import {PageProps} from '@/types';
-import {IconButton, Stack} from "@mui/material";
+import {IconButton, Stack, Typography} from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import {NotListedLocation} from "@mui/icons-material";
 import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 
 export default function Dashboard({}: PageProps<{ }>) {
     const {auth} = usePage().props
@@ -23,11 +24,25 @@ export default function Dashboard({}: PageProps<{ }>) {
     return (
         <>
             <Head title="Dashboard" />
-            <Stack spacing={3}>
+            <Stack spacing={3} paddingY={10} flexGrow={1} justifyContent={'space-around'}>
+                <Stack width={1} alignItems={'center'}>
+                    <Typography>
+                        Dein Status:
+                    </Typography>
+                    <Typography  color={auth.user.state === 0 ? 'green': 'orange'}>
+                        {auth.user.state === 0 ?
+                            'Auf dem Gelände' :
+                            'Abwesend'
+                        }
+                    </Typography>
+                </Stack>
                 <Stack direction={'row'} justifyContent={'center'}>
                     <Stack>
                         <IconButton onClick={pause}>
-                            <HomeIcon/>
+                            {auth.user.state === 0 ?
+                                <PauseCircleIcon/> :
+                                <HomeIcon/>
+                            }
                         </IconButton>
                         {auth.user.state === 0 ? 'Pause' : 'Zurück'}
                     </Stack>

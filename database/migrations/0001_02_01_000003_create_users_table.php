@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('project_instance_id')->nullable()->constrained();
             $table->string('name');
             $table->string('password');
+            $table->string('img_avatar');
             $table->integer('state');
             $table->rememberToken();
             $table->timestamps();

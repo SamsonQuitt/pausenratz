@@ -27,7 +27,7 @@ class UserFactory extends Factory
     {
         return [
             'project_instance_id' => ProjectInstance::factory(),
-            'name' => fake()->name(),
+            'name' => fake()->firstName(),
             'password' => static::$password ??= Hash::make('password'),
             'state' => UserStates::ACTIVE,
             'remember_token' => Str::random(10),

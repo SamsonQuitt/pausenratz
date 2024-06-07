@@ -15,7 +15,7 @@ interface ComponentProps {
 }
 export default function UserGroupAccordion({label, users}: ComponentProps) {
     return (
-        <Accordion>
+        <Accordion width={1}>
             <AccordionSummary>
                 {label}: {users.length}
             </AccordionSummary>
