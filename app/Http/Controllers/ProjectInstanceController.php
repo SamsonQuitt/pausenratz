@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProjectInstanceRequest;
+use App\Http\Requests\UpdateProjectInstancePauseGoalRequest;
 use App\Http\Requests\UpdateProjectInstanceRequest;
 use App\Models\ProjectInstance;
+use Illuminate\Http\RedirectResponse;
 
 class ProjectInstanceController extends Controller
 {
@@ -54,6 +56,14 @@ class ProjectInstanceController extends Controller
     public function update(UpdateProjectInstanceRequest $request, ProjectInstance $projectInstance)
     {
         //
+    }
+
+    public function updatePauseGoal(UpdateProjectInstancePauseGoalRequest $request, ProjectInstance $projectInstance): RedirectResponse
+    {
+        $projectInstance->pause_goal = $request->input('pause_goal');
+        $projectInstance->save();
+        return back()->with(['message' => 'Pausenziel aktualisiert.']);
+
     }
 
     /**

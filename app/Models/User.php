@@ -48,6 +48,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function hasRole(string $keyword): bool
+    {
+        return $this->roles()->where('keyword', $keyword)->first() !== null;
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);

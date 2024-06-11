@@ -15,4 +15,9 @@ export const themeDefault = createTheme({
             default: 'rgb(31, 41, 55)'
         }
     },
+    typography: {
+        h2: {
+            fontSize: 24,
+        }
+    },
 });

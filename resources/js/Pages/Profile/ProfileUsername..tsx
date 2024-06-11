@@ -16,7 +16,7 @@ export default function ProfileUsername({user}: {user: User}) {
     return (
         <PaperSection>
             <Stack padding={4} spacing={2}>
-                <Typography variant={'h2'} fontSize={24}>
+                <Typography variant={'h2'}>
                     Benutzername
                 </Typography>
                 <TextField

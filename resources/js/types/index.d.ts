@@ -21,6 +21,25 @@ export interface Pause {
     time_end: string;
 }
 
+export interface Project {
+    id: number;
+    project_instances: ProjectInstance[]
+    title: string;
+    description: string;
+    location: string;
+    img_avatar: string;
+    img_portrait: string;
+}
+
+export interface ProjectInstance {
+    id: number;
+    users: User[];
+    project_id: number;
+    date_start: string;
+    date_end: string;
+    pause_goal: number;
+}
+
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\PauseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectInstanceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -21,11 +23,14 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::get('/users/pauses', [UserController::class, 'viewPauseGroups'])->name('users-by-pause');
-    Route::get('/administration', fn() => Inertia::render('Administration'))->name('administration');
+
+    Route::get('/pl', [AdministrationController::class, 'viewPL'])->name('pl.view');
+    Route::get('/pfk', [AdministrationController::class, 'viewPFK'])->name('pfk.view');
 
     Route::post('/users/{id}/pauses', [PauseController::class, 'store'])->name('users.pauses.store');
     Route::put('users/{id}/pauses', [PauseController::class, 'update'])->name('users.pauses.update');
 
+    Route::put('project-instances/{projectInstance}/pause-goal', [ProjectInstanceController::class, 'updatePauseGoal'])->name('project-instances.pause-goal.update');
 
 
 });

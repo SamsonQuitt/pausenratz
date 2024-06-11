@@ -99,12 +99,12 @@ export default function LayoutAuthenticated({ children }: PropsWithChildren<{}>)
                             label={'Profil'}
                             icon={<AccountCircleIcon/>}
                         />
-                        {auth.user.roles.filter(role => ['pfk', 'pl', 'admin'].includes(role.keyword)).length > 0 &&
+                        {auth.user.roles.find(role => role.keyowrd === 'pl') !== null &&
                             <BottomNavigationAction
                                 component={Link}
-                                href={route('administration')}
-                                value={route('administration')}
-                                label={'Verwaltung'}
+                                href={route('pl.view')}
+                                value={route('pl.view')}
+                                label={'Projektleitung'}
                                 icon={<PeopleAltIcon/>}
                             />
                         }
