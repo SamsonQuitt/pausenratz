@@ -8,6 +8,12 @@ export interface User {
     email_verified_at: string;
 }
 
+export interface UserState {
+    case: string;
+    value: number;
+    label: string
+}
+
 export interface Role {
     id: number;
     keyword: string;

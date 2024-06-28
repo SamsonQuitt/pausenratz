@@ -6,7 +6,6 @@ export default function PaperSection({children}: PropsWithChildren) {
     return (
         <Paper
             elevation={3}
-            sx={{backgroundColor: theme.palette.info.main}}
         >
             {children}
         </Paper>

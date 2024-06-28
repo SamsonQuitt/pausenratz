@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PauseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectInstanceController;
@@ -19,16 +20,15 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard');
     Route::get('/users/pauses', [UserController::class, 'viewPauseGroups'])->name('users-by-pause');
 
     Route::get('/pl', [AdministrationController::class, 'viewPL'])->name('pl.view');
     Route::get('/pfk', [AdministrationController::class, 'viewPFK'])->name('pfk.view');
 
-    Route::post('/users/{id}/pauses', [PauseController::class, 'store'])->name('users.pauses.store');
+    Route::post('users/{id}/pauses', [PauseController::class, 'store'])->name('users.pauses.store');
     Route::put('users/{id}/pauses', [PauseController::class, 'update'])->name('users.pauses.update');
+    Route::put('users/{user}/state', [UserController::class, 'updateState'])->name('users.state.update');
 
     Route::put('project-instances/{projectInstance}/pause-goal', [ProjectInstanceController::class, 'updatePauseGoal'])->name('project-instances.pause-goal.update');
 
